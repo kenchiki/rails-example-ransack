@@ -21,13 +21,6 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-# 手動で直すべき箇所
-# haml.rbの余計な空白
-# Gemfileのtzinfo-dataを取る
-# Gemfileの位置調整
-# database.ymlの不要な文字と行の削除
-# config/application.rbのscaffoldのgenerateされるファイル設定の位置調整
-# rails generate simple_form:install --bootstrap
 development:
   <<: *default
   database: rails_rails_example_ransack_development

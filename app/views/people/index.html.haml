@@ -1,0 +1,49 @@
+%h1 Person一覧
+
+%h2.mt-5 検索条件
+
+= search_form_for @q do |f|
+  .form-inputs
+    = f.label :name_cont
+    = f.search_field :name_cont
+
+  .form-inputs
+    = f.label :articles_title_start
+    = f.search_field :articles_title_start
+
+  .form-inputs
+    = f.label :name_or_description_or_email_or_articles_title_cont
+    = f.search_field :name_or_description_or_email_or_articles_title_cont
+
+  .form-inputs
+    = f.submit
+
+%h2.mt-5 ソート
+%p= sort_link(@q, :name)
+%p= sort_link(@q, :id)
+
+%h2.mt-5 検索結果
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @people.each do |person|
+      %tr
+        %td= person.id
+        %td= person.name
+        %td= link_to 'Show', person
+        %td= link_to 'Edit', edit_person_path(person)
+        %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
+
+= paginate @people
+
+%br
+
+= link_to 'New Person', new_person_path
